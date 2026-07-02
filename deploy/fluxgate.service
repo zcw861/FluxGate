@@ -1,0 +1,30 @@
+# systemd 服务示例。安装前应创建 fluxgate 用户，并确认二进制和配置路径。
+[Unit]
+Description=FluxGate TCP Load Balancer
+# 等待系统网络达到 online 状态后再启动。
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# FluxGate 前台运行，由 systemd 直接管理主进程。
+Type=simple
+User=fluxgate
+Group=fluxgate
+ExecStart=/usr/local/bin/fluxgate -c /etc/fluxgate/fluxgate.conf
+
+# 仅异常退出时重启，避免管理员主动停止后被立即拉起。
+Restart=on-failure
+RestartSec=2
+
+# 高并发代理需要足够的文件描述符额度。
+LimitNOFILE=200000
+
+# 基础沙箱限制：禁止提权、隔离临时目录和用户家目录。
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/fluxgate
+
+[Install]
+WantedBy=multi-user.target

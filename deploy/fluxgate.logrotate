@@ -1,0 +1,15 @@
+# 若将 systemd 日志重定向到 /var/log/fluxgate/*.log，可安装此 logrotate 规则。
+/var/log/fluxgate/*.log {
+    # 每天轮转一次。
+    daily
+    # 保留最近 14 份。
+    rotate 14
+    # 历史日志使用 gzip 压缩。
+    compress
+    # 日志不存在时不报错。
+    missingok
+    # 空日志不轮转。
+    notifempty
+    # 复制后截断原文件，适用于进程不重新打开日志文件的情况。
+    copytruncate
+}

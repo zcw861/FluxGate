@@ -1,0 +1,16 @@
+Command:
+wrk -t4 -c200 -d60s --latency http://127.0.0.1:18080/benchmark
+
+Running 1m test @ http://127.0.0.1:18080/benchmark
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.69ms  410.53us  22.85ms   80.60%
+    Req/Sec    29.48k     1.18k   35.42k    80.92%
+  Latency Distribution
+     50%    1.65ms
+     75%    1.81ms
+     90%    2.16ms
+     99%    3.13ms
+  7037381 requests in 1.00m, 1.26GB read
+Requests/sec: 117285.96
+Transfer/sec:     21.59MB

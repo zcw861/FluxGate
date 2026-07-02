@@ -1,0 +1,49 @@
+# CMake 构建目录与生成文件
+/build/
+/build-*/
+/cmake-build-*/
+/out/
+compile_commands.json
+
+# 编译产物
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+
+# 运行日志、进程文件与崩溃转储
+*.log
+*.pid
+*.core
+core
+core.*
+
+# 手工 wrk 环境和自动压测的临时结果
+/.wrk-env/
+/benchmark-results/*
+!/benchmark-results/reference/
+!/benchmark-results/reference/**
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE 与系统文件
+.vscode/
+.idea/
+.vs/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 项目压缩包不应再次提交进仓库
+*.zip
+*.tar
+*.tar.gz
+docs/RESUME.md
